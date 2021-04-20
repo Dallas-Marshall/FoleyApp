@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FoleyApp</string>
+    <string name="sample_image">sampleImage</string>
+    <string name="small_animals">Small Animals</string>
+    <string name="medium_animals">Medium Animals</string>
+    <string name="large_animals">Large Animals</string>
+    <string name="select_a_category">Select a category</string>
+</resources>

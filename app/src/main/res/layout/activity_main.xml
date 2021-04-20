@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="@string/select_a_category"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/smallAnimalsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="30dp"
+        android:onClick="categorySelected"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/small_animals" />
+
+    <Button
+        android:id="@+id/mediumAnimalsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="30dp"
+        android:onClick="categorySelected"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/medium_animals" />
+
+    <Button
+        android:id="@+id/largeAnimalsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:onClick="categorySelected"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/large_animals" />
+</androidx.appcompat.widget.LinearLayoutCompat>
