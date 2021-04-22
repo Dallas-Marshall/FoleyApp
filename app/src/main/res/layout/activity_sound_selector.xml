@@ -1,57 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".SoundSelectorActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/TopRow"
+    <View
+        android:id="@+id/centerVertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_centerVertical="true"
+        android:visibility="invisible" />
 
-        <ImageView
-            android:id="@+id/Image01"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            android:contentDescription="@string/sample_image"
-            tools:srcCompat="@drawable/cat" />
+    <View
+        android:id="@+id/centerHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
 
-        <ImageView
-            android:id="@+id/Image02"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="25dp"
-            android:contentDescription="@string/sample_image"
-            tools:srcCompat="@drawable/duck" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/BottomRow"
+    <ImageView
+        android:id="@+id/image01"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/centerVertical"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/centerHorizontal"
+        android:contentDescription="@string/sample_image"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:onClick="imageClicked"
+        android:padding="10dp"
+        android:src="@drawable/hawk" />
 
-        <ImageView
-            android:id="@+id/Image03"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            android:contentDescription="@string/sample_image"
-            tools:srcCompat="@drawable/snake" />
+    <ImageView
+        android:id="@+id/image02"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/centerVertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/centerHorizontal"
+        android:contentDescription="@string/sample_image"
+        android:gravity="center"
+        android:onClick="imageClicked"
+        android:padding="10dp"
+        android:src="@drawable/cow" />
 
-        <ImageView
-            android:id="@+id/Image04"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="25dp"
-            android:contentDescription="@string/sample_image"
-            tools:srcCompat="@drawable/hawk" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/image03"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/centerVertical"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/centerHorizontal"
+        android:contentDescription="@string/sample_image"
+        android:gravity="center"
+        android:onClick="imageClicked"
+        android:padding="10dp"
+        android:src="@drawable/snake" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/image04"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/centerVertical"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/centerHorizontal"
+        android:contentDescription="@string/sample_image"
+        android:gravity="center"
+        android:onClick="imageClicked"
+        android:padding="10dp"
+        android:src="@drawable/lion" />
+</RelativeLayout>
