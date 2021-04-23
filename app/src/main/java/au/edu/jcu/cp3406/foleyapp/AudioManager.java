@@ -28,7 +28,7 @@ public class AudioManager implements SoundPool.OnLoadCompleteListener {
         pool.load(context, R.raw.dog_bark, 0);
         pool.load(context, R.raw.duck_quack, 0);
         pool.load(context, R.raw.elephant_trumpet, 0);
-        pool.load(context, R.raw.frog_croa, 0);
+        pool.load(context, R.raw.frog_croak, 0);
         pool.load(context, R.raw.goose_call, 0);
         pool.load(context, R.raw.hawk_call, 0);
         pool.load(context, R.raw.mountain_lion_roar, 0);
@@ -54,7 +54,8 @@ public class AudioManager implements SoundPool.OnLoadCompleteListener {
 
     void play(Sound sound) {
         Integer id = soundIds.get(sound);
-        assert id != null;
-        pool.play(id, 1, 1, 1, 0, 1);
+        if (id != null) {
+            pool.play(id, 1, 1, 1, 0, 1);
+        }
     }
 }

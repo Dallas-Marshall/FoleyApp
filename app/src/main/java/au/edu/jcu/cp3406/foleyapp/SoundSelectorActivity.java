@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -57,47 +58,44 @@ public class SoundSelectorActivity extends AppCompatActivity {
 
     }
 
-    public void imageClicked(View button) {
+    public void imageClicked(View image) {
         if (audioManager.isReady()) {
-            int buttonClickedID = button.getId();
-            Sound sound = getSound(buttonClickedID);
-            Locale locale = Locale.getDefault();
-            String confirmation = String.format(locale, "Playing \"%s\"", sound.toString());
-            Toast.makeText(SoundSelectorActivity.this, confirmation, Toast.LENGTH_SHORT).show();
+            Sound sound = getSound(image.getId());
+            Log.i("AudioManager", "Sound Played: " + sound);
             audioManager.play(sound);
         }
     }
 
 
-    private Sound getSound(int buttonClickedID) {
+    private Sound getSound(int imageClickedID) {
         if (categorySelectedID == R.id.smallAnimalsButton) {
-            if (buttonClickedID == R.id.image01) {
+            if (imageClickedID == R.id.image01) {
                 return Sound.FROG_CROAK;
-            } else if (buttonClickedID == R.id.image02) {
+            } else if (imageClickedID == R.id.image02) {
                 return Sound.HAWK_CALL;
-            } else if (buttonClickedID == R.id.image03) {
+            } else if (imageClickedID == R.id.image03) {
                 return Sound.RATTLESNAKE_RATTLE;
-            } else if (buttonClickedID == R.id.image04) {
+            } else if (imageClickedID == R.id.image04) {
                 return Sound.ROOSTER_CROW;
             }
         } else if (categorySelectedID == R.id.mediumAnimalsButton) {
-            if (buttonClickedID == R.id.image01) {
+            if (imageClickedID == R.id.image01) {
                 return Sound.DOG_BARK;
-            } else if (buttonClickedID == R.id.image02) {
+            } else if (imageClickedID == R.id.image02) {
                 return Sound.CAT_MEOW;
-            } else if (buttonClickedID == R.id.image03) {
+            } else if (imageClickedID == R.id.image03) {
                 return Sound.GOOSE_CALL;
-            } else if (buttonClickedID == R.id.image04) {
+            } else if (imageClickedID == R.id.image04) {
                 return Sound.DUCK_QUACK;
             }
         } else {
-            if (buttonClickedID == R.id.image01) {
+            if (imageClickedID == R.id.image01) {
                 return Sound.COW_MOO;
-            } else if (buttonClickedID == R.id.image02) {
+            } else if (imageClickedID == R.id.image02) {
                 return Sound.ELEPHANT_TRUMPET;
-            } else if (buttonClickedID == R.id.image03) {
+            } else if (imageClickedID == R.id.image03) {
                 return Sound.PIG_SNORT;
-            } else if (buttonClickedID == R.id.image04) {
+            } else if (imageClickedID == R.id.image04) {
                 return Sound.MOUNTAIN_LION_ROAR;
             }
         }
