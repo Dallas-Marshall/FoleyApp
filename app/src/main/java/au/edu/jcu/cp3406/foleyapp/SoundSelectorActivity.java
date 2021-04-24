@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -14,11 +16,13 @@ import java.util.Random;
 
 public class SoundSelectorActivity extends AppCompatActivity {
     private int categorySelectedID;
-    private ImageView image01;
-    private ImageView image02;
-    private ImageView image03;
-    private ImageView image04;
     private AudioManager audioManager;
+    private int height;
+    private int width;
+
+    private enum Quadrant {TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT}
+
+    private Quadrant quadrantSelected;
 
 
     @Override
@@ -31,10 +35,10 @@ public class SoundSelectorActivity extends AppCompatActivity {
         Intent intent = getIntent();
         categorySelectedID = intent.getIntExtra("categorySelected", R.id.mediumAnimalsButton);
 
-        image01 = findViewById(R.id.image01);
-        image02 = findViewById(R.id.image02);
-        image03 = findViewById(R.id.image03);
-        image04 = findViewById(R.id.image04);
+        ImageView image01 = findViewById(R.id.image01);
+        ImageView image02 = findViewById(R.id.image02);
+        ImageView image03 = findViewById(R.id.image03);
+        ImageView image04 = findViewById(R.id.image04);
 
         if (categorySelectedID == R.id.smallAnimalsButton) {
             // Set Small Images
@@ -56,49 +60,88 @@ public class SoundSelectorActivity extends AppCompatActivity {
             image04.setImageResource(R.drawable.lion);
         }
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        height = displayMetrics.heightPixels;
+        width = displayMetrics.widthPixels;
+        Log.i("SoundSelector", "Screen Size: " + height);
+        Log.i("SoundSelector", "Screen Size: " + width);
     }
 
-    public void imageClicked(View image) {
+    public void imageClicked() {
         if (audioManager.isReady()) {
-            Sound sound = getSound(image.getId());
+            Sound sound = getSound();
             Log.i("AudioManager", "Sound Played: " + sound);
             audioManager.play(sound);
         }
     }
 
 
-    private Sound getSound(int imageClickedID) {
+    private Sound getSound() {
         if (categorySelectedID == R.id.smallAnimalsButton) {
-            if (imageClickedID == R.id.image01) {
+            if (quadrantSelected == Quadrant.TOP_LEFT) {
                 return Sound.FROG_CROAK;
-            } else if (imageClickedID == R.id.image02) {
+            } else if (quadrantSelected == Quadrant.TOP_RIGHT) {
                 return Sound.HAWK_CALL;
-            } else if (imageClickedID == R.id.image03) {
+            } else if (quadrantSelected == Quadrant.BOTTOM_LEFT) {
                 return Sound.RATTLESNAKE_RATTLE;
-            } else if (imageClickedID == R.id.image04) {
+            } else if (quadrantSelected == Quadrant.BOTTOM_RIGHT) {
                 return Sound.ROOSTER_CROW;
             }
         } else if (categorySelectedID == R.id.mediumAnimalsButton) {
-            if (imageClickedID == R.id.image01) {
+            if (quadrantSelected == Quadrant.TOP_LEFT) {
                 return Sound.DOG_BARK;
-            } else if (imageClickedID == R.id.image02) {
-                return Sound.CAT_MEOW;
-            } else if (imageClickedID == R.id.image03) {
+            } else if (quadrantSelected == Quadrant.TOP_RIGHT) {
+                return Sound.COW_MOO;
+            } else if (quadrantSelected == Quadrant.BOTTOM_LEFT) {
                 return Sound.GOOSE_CALL;
-            } else if (imageClickedID == R.id.image04) {
+            } else if (quadrantSelected == Quadrant.BOTTOM_RIGHT) {
                 return Sound.DUCK_QUACK;
             }
         } else {
-            if (imageClickedID == R.id.image01) {
+            if (quadrantSelected == Quadrant.TOP_LEFT) {
                 return Sound.COW_MOO;
-            } else if (imageClickedID == R.id.image02) {
+            } else if (quadrantSelected == Quadrant.TOP_RIGHT) {
                 return Sound.ELEPHANT_TRUMPET;
-            } else if (imageClickedID == R.id.image03) {
+            } else if (quadrantSelected == Quadrant.BOTTOM_LEFT) {
                 return Sound.PIG_SNORT;
-            } else if (imageClickedID == R.id.image04) {
+            } else if (quadrantSelected == Quadrant.BOTTOM_RIGHT) {
                 return Sound.MOUNTAIN_LION_ROAR;
             }
         }
         return Sound.ELEPHANT_TRUMPET;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.i("SoundSelector", "Touch Registered x: " + x);
+                Log.i("SoundSelector", "Touch Registered y: " + y);
+                if ((y < height / 2) && (x < width / 2)) {
+                    Log.i("SoundSelector", "Top Left");
+                    Log.i("SoundSelector", "-----------");
+                    quadrantSelected = Quadrant.TOP_LEFT;
+                } else if ((y > height / 2) && (x < width / 2)) {
+                    Log.i("SoundSelector", "Bottom Left");
+                    Log.i("SoundSelector", "-----------");
+                    quadrantSelected = Quadrant.BOTTOM_LEFT;
+                } else if ((y < height / 2) && (x > width / 2)) {
+                    Log.i("SoundSelector", "Top Right");
+                    Log.i("SoundSelector", "-----------");
+                    quadrantSelected = Quadrant.TOP_RIGHT;
+                } else {
+                    Log.i("SoundSelector", "Bottom Right");
+                    Log.i("SoundSelector", "-----------");
+                    quadrantSelected = Quadrant.BOTTOM_RIGHT;
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_UP:
+        }
+        imageClicked();
+        return false;
     }
 }

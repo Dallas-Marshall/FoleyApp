@@ -27,7 +27,6 @@
         android:layout_toStartOf="@+id/centerHorizontal"
         android:contentDescription="@string/sample_image"
         android:gravity="center"
-        android:onClick="imageClicked"
         android:padding="10dp"
         android:src="@drawable/hawk" />
 
@@ -41,7 +40,6 @@
         android:layout_toEndOf="@+id/centerHorizontal"
         android:contentDescription="@string/sample_image"
         android:gravity="center"
-        android:onClick="imageClicked"
         android:padding="10dp"
         android:src="@drawable/cow" />
 
@@ -55,7 +53,6 @@
         android:layout_toStartOf="@+id/centerHorizontal"
         android:contentDescription="@string/sample_image"
         android:gravity="center"
-        android:onClick="imageClicked"
         android:padding="10dp"
         android:src="@drawable/snake" />
 
@@ -69,7 +66,6 @@
         android:layout_toEndOf="@+id/centerHorizontal"
         android:contentDescription="@string/sample_image"
         android:gravity="center"
-        android:onClick="imageClicked"
         android:padding="10dp"
         android:src="@drawable/lion" />
 </RelativeLayout>

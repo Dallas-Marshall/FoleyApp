@@ -7,10 +7,6 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
-// This code demonstrates one way to load several sounds
-// into a sound pool. Each sound has a unique sampleId.
-// SampleId's are not the same as the raw resource ids
-
 public class AudioManager implements SoundPool.OnLoadCompleteListener {
     private final Map<Sound, Integer> soundIds;
     private final SoundPool pool;
@@ -41,8 +37,6 @@ public class AudioManager implements SoundPool.OnLoadCompleteListener {
     public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
         this.ready = status == 0;
 
-        // Each time a load finishes, the next loadId
-        // is used to determine which enum value to use
         Sound sound = Sound.values()[loadId++];
         Log.i("AudioManager", "loaded sound: " + sound);
         soundIds.put(sound, sampleId);

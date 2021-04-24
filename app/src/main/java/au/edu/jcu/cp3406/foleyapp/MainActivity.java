@@ -18,11 +18,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        final TextView info = findViewById(R.id.info);
-        Button smallAnimalsButton = findViewById(R.id.smallAnimalsButton);
-        Button mediumAnimalsButton = findViewById(R.id.mediumAnimalsButton);
-        Button largeAnimalsButton = findViewById(R.id.largeAnimalsButton);
     }
 
     public void categorySelected(View buttonPressedView) {
